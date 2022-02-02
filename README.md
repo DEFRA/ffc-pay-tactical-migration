@@ -48,7 +48,7 @@ The following steps should be executed in order to ensure data consistency.
 
 15. Copy all CSV files to `input` directory
 
-16. Run `node app/index.js`
+16. Run `npm run start` to run with Node.js or `./scripts/start -b` to run with Docker
 
 17. Scripts will be output to the `output` directory
 
