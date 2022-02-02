@@ -79,3 +79,8 @@ CREATE TABLE "tempHoldLines"
   "BatchToCustomerDate" VARCHAR,
   "MSDaxAccountCode" VARCHAR 
 );
+
+CREATE TABLE "tempHolds"
+(
+  "FRN" BIGINT
+);
