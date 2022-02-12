@@ -107,3 +107,12 @@ The following steps should be executed in order to ensure data consistency.
 41. Amend `nextAP` sequence number in [ffc-pay-submission/update-dax-sequence.sql](ffc-pay-submission/update-dax-sequence.sql)
 
 42. Execute [ffc-pay-submission/update-dax-sequence.sql](ffc-pay-submission/update-dax-sequence.sql)
+
+## Reset databases
+
+In the event the migration needs to be reversed or to support creating a "clean" environment, the following scripts can be run.
+
+- [ffc-pay-batch-processor](ffc-pay-batch-processor/reset.sql)
+- [ffc-pay-processing](ffc-pay-processing/reset.sql)
+- [ffc-pay-submission](ffc-pay-submission/reset.sql)
+- [ffc-pay-request-editor](ffc-pay-request-editor/reset.sql)
