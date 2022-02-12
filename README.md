@@ -9,7 +9,7 @@ The following steps should be executed in order to ensure data consistency.
 ### Extract completed payment requests from Transformation Layer
 
 1. Connect to Production Transformation Layer SQL Server with SSMS
-   
+
 2. Execute [transformation-layer/get-completed-headers.sql](transformation-layer/get-completed-headers.sql)
 
 3. Save results as CSV with name `tempHeaders.csv`
@@ -107,6 +107,35 @@ The following steps should be executed in order to ensure data consistency.
 41. Amend `nextAP` sequence number in [ffc-pay-submission/update-dax-sequence.sql](ffc-pay-submission/update-dax-sequence.sql)
 
 42. Execute [ffc-pay-submission/update-dax-sequence.sql](ffc-pay-submission/update-dax-sequence.sql)
+
+### Validate migration success
+
+43. Connect to target FFC Azure PostgreSQL server using client of choice
+
+44. Connect to `ffc-pay-processing` database
+
+45. Execute [ffc-pay-processing/validate-completed-payment-requests.sql](ffc-pay-processing/validate-completed-payment-requests.sql)
+
+46. Execute [ffc-pay-processing/validate-completed-invoice-lines.sql](ffc-pay-processing/validate-completed-invoice-lines.sql)
+
+47. Execute [ffc-pay-processing/validate-holds.sql](ffc-pay-processing/validate-holds.sql)
+
+48. Connect to Production Transformation Layer SQL Server with SSMS
+
+49. Execute [transformation-layer/validate-completed-headers.sql](transformation-layer/validate-completed-headers.sql)
+
+50. Compare output to step `45`, ignoring decimal place of value
+
+51. Execute [transformation-layer/validate-completed-invoice-lines.sql](transformation-layer/validate-completed-invoice-lines.sql)
+
+52. Compare output to step `46`, ignoring decimal place of value
+
+53. Connect to Production tactical payment SQL Server with SSMS
+
+54. Execute [tactical-payments/validate-holds.sql](tactical-payments/validate-holds.sql)
+
+55. Compare output to step `47`, ignoring decimal place of value
+
 
 ## Reset databases
 
