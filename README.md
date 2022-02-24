@@ -145,3 +145,13 @@ In the event the migration needs to be reversed or to support creating a "clean"
 - [ffc-pay-processing](ffc-pay-processing/reset.sql)
 - [ffc-pay-submission](ffc-pay-submission/reset.sql)
 - [ffc-pay-request-editor](ffc-pay-request-editor/reset.sql)
+
+## Delete single payment request
+
+In the event a single payment request needs to be removed to support processing, then the following scripts can be run.
+
+> They will need the `paymentRequestId` to be updated first.
+
+- [ffc-pay-processing](ffc-pay-processing/delete-payment-request.sql)
+- [ffc-pay-submission](ffc-pay-submission/delete-payment-request.sql)
+- [ffc-pay-request-editor](ffc-pay-request-editor/delete-payment-request.sql)
