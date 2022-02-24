@@ -148,7 +148,7 @@ In the event the migration needs to be reversed or to support creating a "clean"
 
 ## Delete single payment request
 
-In the event a single payment request needs to be removed to support processing, then the following scripts can be run.
+In the event a single payment request needs to be removed to support testing, then the following scripts can be run.
 
 > They will need the `paymentRequestId` to be updated first.
 
