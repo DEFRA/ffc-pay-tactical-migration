@@ -14,7 +14,7 @@ The following steps should be executed in order to ensure data consistency.
 
 3. Save results as CSV with name `tempHeaders.csv`
 
-4. Execute [transformation-layer/get-completed-headers.sql](transformation-layer/get-completed-invoice-lines.sql)
+4. Execute [transformation-layer/get-completed-invoice-lines.sql](transformation-layer/get-completed-invoice-lines.sql)
 
 5. Save results as CSV with name `tempLines.csv`
 
