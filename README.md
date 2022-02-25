@@ -40,7 +40,7 @@ The following steps should be executed in order to ensure data consistency.
      git clone https://github.com/johnwatson484/csv-to-postgresql.git
      ```
 
-14. Create required directories in root of repository with:    
+14. Create required directories in root of repository with:
     ```
     mkdir -p ./input
     mkdir -p ./output
