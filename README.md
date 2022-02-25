@@ -58,17 +58,17 @@ The following steps should be executed in order to ensure data consistency.
 
 19. Connect to `ffc-pay-processing` database
 
-20. Execute generated script `tempHeaders.sql`
+20. Execute [ffc-pay-processing/create-temp-tables.sql](ffc-pay-processing/create-temp-tables.sql)
 
-21. Execute generated script `tempLines.sql`
+21. Execute generated script `tempHeaders.sql`
 
-22. Execute generated script `tempHoldHeaders.sql`
+22. Execute generated script `tempLines.sql`
 
-23. Execute generated script `tempHoldLines.sql`
+23. Execute generated script `tempHoldHeaders.sql`
 
-24. Execute generated script `tempHolds.sql`
+24. Execute generated script `tempHoldLines.sql`
 
-25. Execute [ffc-pay-processing/create-temp-tables.sql](ffc-pay-processing/create-temp-tables.sql)
+25. Execute generated script `tempHolds.sql`
 
 26. Execute [ffc-pay-processing/load-payment-requests.sql](ffc-pay-processing/load-payment-requests.sql)
 
