@@ -52,90 +52,122 @@ The following steps should be executed in order to ensure data consistency.
 
 17. Scripts will be output to the `output` directory
 
+### Build return file for settlement data
+
+18. Request settlement report from CPAT covering all SFI pilot payments
+
+. Clone repository https://github.com/defra/ffc-pay-settlement-to-return-file with:
+     ```
+     git clone https://github.com/ffc-pay-settlement-to-return-file.git
+     ```
+
+19. Create required directories in root of repository with:
+    ```
+    mkdir -p ./input
+    mkdir -p ./output
+    ```
+
+20. Copy all CPAT report files to `input` directory
+
+21. Run `npm run start` to run with Node.js or `./scripts/start -b` to run with Docker
+   
+22. Return file will be output to the `output` directory
+
 ### Update Payment Processing
 
-18. Connect to target FFC Azure PostgreSQL server using client of choice
+23. Connect to target FFC Azure PostgreSQL server using client of choice
 
-19. Connect to `ffc-pay-processing` database
+24. Connect to `ffc-pay-processing` database
 
-20. Execute [ffc-pay-processing/create-temp-tables.sql](ffc-pay-processing/create-temp-tables.sql)
+25. Execute [ffc-pay-processing/create-temp-tables.sql](ffc-pay-processing/create-temp-tables.sql)
 
-21. Execute generated script `tempHeaders.sql`
+26. Execute generated script `tempHeaders.sql`
 
-22. Execute generated script `tempLines.sql`
+27. Execute generated script `tempLines.sql`
 
-23. Execute generated script `tempHoldHeaders.sql`
+28. Execute generated script `tempHoldHeaders.sql`
 
-24. Execute generated script `tempHoldLines.sql`
+29. Execute generated script `tempHoldLines.sql`
 
-25. Execute generated script `tempHolds.sql`
+30. Execute generated script `tempHolds.sql`
 
-26. Execute [ffc-pay-processing/load-payment-requests.sql](ffc-pay-processing/load-payment-requests.sql)
+31. Execute [ffc-pay-processing/load-payment-requests.sql](ffc-pay-processing/load-payment-requests.sql)
 
-27. Execute [ffc-pay-processing/load-invoice-lines.sql](ffc-pay-processing/load-invoice-lines.sql)
+32. Execute [ffc-pay-processing/load-invoice-lines.sql](ffc-pay-processing/load-invoice-lines.sql)
 
-28. Execute [ffc-pay-processing/load-completed-payment-requests.sql](ffc-pay-processing/load-completed-payment-requests.sql)
+33. Execute [ffc-pay-processing/load-completed-payment-requests.sql](ffc-pay-processing/load-completed-payment-requests.sql)
 
-29. Execute [ffc-pay-processing/load-completed-invoice-lines.sql](ffc-pay-processing/load-completed-invoice-lines.sql)
+34. Execute [ffc-pay-processing/load-completed-invoice-lines.sql](ffc-pay-processing/load-completed-invoice-lines.sql)
 
-30. Execute [ffc-pay-processing/load-holds.sql](ffc-pay-processing/load-holds.sql)
+35. Execute [ffc-pay-processing/load-holds.sql](ffc-pay-processing/load-holds.sql)
 
-31. Execute [ffc-pay-processing/load-hold-payment-requests.sql](ffc-pay-processing/load-hold-payment-requests.sql)
+36. Execute [ffc-pay-processing/load-hold-payment-requests.sql](ffc-pay-processing/load-hold-payment-requests.sql)
 
-32. Execute [ffc-pay-processing/load-completed-invoice-lines.sql](ffc-pay-processing/load-hold-invoice-lines.sql)
+37. Execute [ffc-pay-processing/load-completed-invoice-lines.sql](ffc-pay-processing/load-hold-invoice-lines.sql)
 
-33. Execute [ffc-pay-processing/create-hold-schedule.sql](ffc-pay-processing/create-hold-schedule.sql)
+38. Execute [ffc-pay-processing/create-hold-schedule.sql](ffc-pay-processing/create-hold-schedule.sql)
 
-34. Execute [ffc-pay-processing/delete-temp-tables.sql](ffc-pay-processing/delete-temp-tables.sql)
+39. Execute [ffc-pay-processing/delete-temp-tables.sql](ffc-pay-processing/delete-temp-tables.sql)
 
 ### Update Payment Batch Processor
 
-35. Connect to target FFC Azure PostgreSQL server using client of choice
+40. Connect to target FFC Azure PostgreSQL server using client of choice
 
-36. Connect to `ffc-pay-batch-processor` database
+41. Connect to `ffc-pay-batch-processor` database
 
-37. Amend `next` sequence number in [ffc-pay-batch-processor/update-batch-sequence.sql](ffc-pay-batch-processor/update-batch-sequence.sql)
+42. Amend `next` sequence number in [ffc-pay-batch-processor/update-batch-sequence.sql](ffc-pay-batch-processor/update-batch-sequence.sql)
 
-38. Execute [ffc-pay-batch-processor/update-batch-sequence.sql](ffc-pay-batch-processor/update-batch-sequence.sql)
+43. Execute [ffc-pay-batch-processor/update-batch-sequence.sql](ffc-pay-batch-processor/update-batch-sequence.sql)
 
 ### Update Payment Submission
 
-39. Connect to target FFC Azure PostgreSQL server using client of choice
+44. Connect to target FFC Azure PostgreSQL server using client of choice
 
-40. Connect to `ffc-pay-submission` database
+45. Connect to `ffc-pay-submission` database
 
-41. Amend `nextAP` sequence number in [ffc-pay-submission/update-dax-sequence.sql](ffc-pay-submission/update-dax-sequence.sql)
+46. Amend `nextAP` sequence number in [ffc-pay-submission/update-dax-sequence.sql](ffc-pay-submission/update-dax-sequence.sql)
 
-42. Execute [ffc-pay-submission/update-dax-sequence.sql](ffc-pay-submission/update-dax-sequence.sql)
+47. Execute [ffc-pay-submission/update-dax-sequence.sql](ffc-pay-submission/update-dax-sequence.sql)
+
+### Process return file
+
+48. Navigate to Azure payment blob storage account
+
+49. Upload return file created at `22` to `dax` container in `inbound` virtual directory
+
+50. Within 1 minute, file should be consumed by `ffc-pay-responses` Kubernetes pod and moved to `archive` subdirectory
 
 ### Validate migration success
 
-43. Connect to target FFC Azure PostgreSQL server using client of choice
+51. Connect to target FFC Azure PostgreSQL server using client of choice
 
-44. Connect to `ffc-pay-processing` database
+52. Connect to `ffc-pay-processing` database
 
-45. Execute [ffc-pay-processing/validate-completed-payment-requests.sql](ffc-pay-processing/validate-completed-payment-requests.sql)
+53. Execute [ffc-pay-processing/validate-completed-payment-requests.sql](ffc-pay-processing/validate-completed-payment-requests.sql)
 
-46. Execute [ffc-pay-processing/validate-completed-invoice-lines.sql](ffc-pay-processing/validate-completed-invoice-lines.sql)
+54. Execute [ffc-pay-processing/validate-completed-invoice-lines.sql](ffc-pay-processing/validate-completed-invoice-lines.sql)
 
-47. Execute [ffc-pay-processing/validate-holds.sql](ffc-pay-processing/validate-holds.sql)
+55. Execute [ffc-pay-processing/validate-holds.sql](ffc-pay-processing/validate-holds.sql)
 
-48. Connect to Production Transformation Layer SQL Server with SSMS
+56. Connect to Production Transformation Layer SQL Server with SSMS
 
-49. Execute [transformation-layer/validate-completed-headers.sql](transformation-layer/validate-completed-headers.sql)
+57. Execute [transformation-layer/validate-completed-headers.sql](transformation-layer/validate-completed-headers.sql)
 
-50. Compare output to step `45`, ignoring decimal place of value
+58. Compare output to step `53`, ignoring decimal place of value
 
-51. Execute [transformation-layer/validate-completed-invoice-lines.sql](transformation-layer/validate-completed-invoice-lines.sql)
+59. Execute [transformation-layer/validate-completed-invoice-lines.sql](transformation-layer/validate-completed-invoice-lines.sql)
 
-52. Compare output to step `46`, ignoring decimal place of value
+60. Compare output to step `54`, ignoring decimal place of value
 
-53. Connect to Production tactical payment SQL Server with SSMS
+61. Connect to Production tactical payment SQL Server with SSMS
 
-54. Execute [tactical-payments/validate-holds.sql](tactical-payments/validate-holds.sql)
+62. Execute [tactical-payments/validate-holds.sql](tactical-payments/validate-holds.sql)
 
-55. Compare output to step `47`, ignoring decimal place of value
+63. Compare output to step `55`, ignoring decimal place of value
 
+64. Execute [tactical-payments/validate-holds.sql](ffc-pay-processing/validate-settlement-values.sql)
+
+65. Compare output to CPAT settlement report at `18`, ignoring decimal place of value
 
 ## Reset databases
 
