@@ -1,5 +1,5 @@
 INSERT INTO public."completedPaymentRequests" (
-    "paymentRequestId", "schemeId", "ledger", "sourceSystem", "deliveryBody", "invoiceNumber", "frn", "agreementNumber", "contractNumber", "currency", "schedule", "dueDate", "value", "acknowledged", "settledValue", "lastSettlement", "marketingYear", "submitted", "paymentRequestNumber", "invalid"
+    "paymentRequestId", "schemeId", "ledger", "sourceSystem", "deliveryBody", "invoiceNumber", "frn", "agreementNumber", "contractNumber", "currency", "schedule", "dueDate", "value", "acknowledged", "marketingYear", "submitted", "paymentRequestNumber", "invalid"
 )
 SELECT DISTINCT
     headers."paymentRequestId",
@@ -14,8 +14,6 @@ SELECT DISTINCT
     headers.currency,
     headers.schedule,
     headers."dueDate",
-    headers.value,
-    NOW(),
     headers.value,
     NOW(),
     headers."marketingYear",
