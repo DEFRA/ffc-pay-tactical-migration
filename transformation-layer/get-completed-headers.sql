@@ -13,4 +13,6 @@ SELECT [ID]
       ,[Payment Preference Currency]
       ,[Creator ID]
       ,[Payment Schedule]
+      ,NEWID() AS correlationId
+      ,NEWID() AS referenceId
   FROM [Transformation Layer (Production)].[Stage].[SITISFI AP Headers]

@@ -1,5 +1,5 @@
 INSERT INTO public."paymentRequests" (
-    "schemeId", "sourceSystem", "deliveryBody", "invoiceNumber", "frn", "agreementNumber", "contractNumber", "currency", "schedule", "dueDate", "value", "received", "marketingYear", "paymentRequestNumber", "ledger"
+    "schemeId", "sourceSystem", "deliveryBody", "invoiceNumber", "frn", "agreementNumber", "contractNumber", "currency", "schedule", "dueDate", "value", "received", "marketingYear", "paymentRequestNumber", "ledger", "correlationId", "referenceId"
 )
 SELECT DISTINCT
     2,
@@ -16,7 +16,9 @@ SELECT DISTINCT
     NOW(),
     lines."MarketingYear",
     headers."PaymentType",
-    'AP'
+    'AP',
+    headers."correlationId",
+    headers."referenceId"
 FROM public."tempHoldHeaders" AS headers
 INNER JOIN public."tempHoldLines" AS lines
     ON headers."Id" = lines."WithheldPayeeId"

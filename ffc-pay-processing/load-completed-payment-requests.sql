@@ -1,5 +1,5 @@
 INSERT INTO public."completedPaymentRequests" (
-    "paymentRequestId", "schemeId", "ledger", "sourceSystem", "deliveryBody", "invoiceNumber", "frn", "agreementNumber", "contractNumber", "currency", "schedule", "dueDate", "value", "acknowledged", "marketingYear", "submitted", "paymentRequestNumber", "invalid"
+    "paymentRequestId", "schemeId", "ledger", "sourceSystem", "deliveryBody", "invoiceNumber", "frn", "agreementNumber", "contractNumber", "currency", "schedule", "dueDate", "value", "acknowledged", "marketingYear", "submitted", "paymentRequestNumber", "invalid", "correlationId", "referenceId"
 )
 SELECT DISTINCT
     headers."paymentRequestId",
@@ -19,7 +19,9 @@ SELECT DISTINCT
     headers."marketingYear",
     NOW(),
     headers."paymentRequestNumber",
-    false
+    false,
+    headers."correlationId",
+    headers."referenceId"
 FROM public."paymentRequests" AS headers
 INNER JOIN public."tempHeaders" AS temp
     ON headers."invoiceNumber" = temp."Invoice Number"

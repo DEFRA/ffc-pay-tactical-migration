@@ -18,5 +18,7 @@ SELECT [Id]
       ,[DateMarkedForRelease]
       ,[Released]
       ,[DateReleased]
+      ,NEWID() AS correlationId
+      ,NEWID() AS referenceId
   FROM [DEFRA.Payments.SFI].[dbo].[WithheldPayee]
   WHERE Released = 0

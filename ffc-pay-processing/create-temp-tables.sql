@@ -13,7 +13,9 @@ CREATE TABLE "tempHeaders"
   "Delivery Body" VARCHAR,
   "Payment Preference Currency" VARCHAR,
   "Creator ID" VARCHAR,
-  "Payment Schedule" VARCHAR
+  "Payment Schedule" VARCHAR,
+  "correlationId" VARCHAR,
+  "referenceId" VARCHAR
 );
 
 CREATE TABLE "tempLines"
@@ -57,7 +59,9 @@ CREATE TABLE "tempHoldHeaders"
   "MarkedForRelease" INTEGER,
   "DateMarkedForRelease" VARCHAR,
   "Released" INTEGER,
-  "DateReleased" VARCHAR
+  "DateReleased" VARCHAR,
+  "correlationId" VARCHAR,
+  "referenceId" VARCHAR
 );
 
 CREATE TABLE "tempHoldLines"
