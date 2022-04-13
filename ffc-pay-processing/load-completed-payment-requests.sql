@@ -20,8 +20,8 @@ SELECT DISTINCT
     NOW(),
     headers."paymentRequestNumber",
     false,
-    headers."correlationId",
-    headers."referenceId"
+    CAST(headers."correlationId" AS UUID),
+    CAST(headers."referenceId" AS UUID)
 FROM public."paymentRequests" AS headers
 INNER JOIN public."tempHeaders" AS temp
     ON headers."invoiceNumber" = temp."Invoice Number"

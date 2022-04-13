@@ -17,8 +17,8 @@ SELECT DISTINCT
     lines."MarketingYear",
     headers."PaymentType",
     'AP',
-    headers."correlationId",
-    headers."referenceId"
+    CAST(headers."correlationId" AS UUID),
+    CAST(headers."referenceId" AS UUID)
 FROM public."tempHoldHeaders" AS headers
 INNER JOIN public."tempHoldLines" AS lines
     ON headers."Id" = lines."WithheldPayeeId"

@@ -17,8 +17,8 @@ SELECT DISTINCT
     lines."Marketing Year",
     headers."Request Number",
     'AP',
-    headers."correlationId",
-    headers."referenceId"
+    CAST(headers."correlationId" AS UUID),
+    CAST(headers."referenceId" AS UUID)
 FROM public."tempHeaders" AS headers
 INNER JOIN public."tempLines" AS lines
     ON headers."Invoice Number" = lines."Invoice Number"
