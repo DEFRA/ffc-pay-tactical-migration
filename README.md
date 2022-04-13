@@ -169,7 +169,7 @@ The following steps should be executed in order to ensure data consistency.
 
 65. Compare output to step `56`, ignoring decimal place of value
 
-66. Execute [tactical-payments/validate-holds.sql](ffc-pay-processing/validate-settlement-values.sql)
+66. Execute [tactical-payments/validate-settlement-values.sql](ffc-pay-processing/validate-settlement-values.sql)
 
 67. Compare output to CPAT settlement report at `18`, ignoring decimal place of value
 
