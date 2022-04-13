@@ -103,7 +103,7 @@ The following steps should be executed in order to ensure data consistency.
 
 36. Execute [ffc-pay-processing/load-hold-payment-requests.sql](ffc-pay-processing/load-hold-payment-requests.sql)
 
-37. Execute [ffc-pay-processing/load-completed-invoice-lines.sql](ffc-pay-processing/load-hold-invoice-lines.sql)
+37. Execute [ffc-pay-processing/load-hold-invoice-lines.sql](ffc-pay-processing/load-hold-invoice-lines.sql)
 
 38. Execute [ffc-pay-processing/create-hold-schedule.sql](ffc-pay-processing/create-hold-schedule.sql)
 
