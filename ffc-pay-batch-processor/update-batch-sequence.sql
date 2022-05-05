@@ -1,3 +1,3 @@
 UPDATE public."sequences"
-SET "next" = 1
+SET "next" = 8
 WHERE "schemeId" = 2;
